@@ -1,0 +1,291 @@
+#include <iostream>
+#include "string"
+
+using namespace std;
+class user
+{
+ public:
+    int ID=10;
+    int user_phone;
+    string user_name;
+    string user_address;
+    string user_email ;
+    int password;
+    string userlo;
+    int passwordlo;
+
+public:
+   
+    user() {
+
+        
+
+        }
+
+public:
+   
+    void login(string le, int lp)
+    {
+        
+        string userlo = le;
+        int passwordlo = lp;
+        cout << "now please login here" << endl;
+        cout << "e-mail : ";
+        cin >> userlo;
+        cout << "password  : ";
+        cin >> passwordlo;
+        if ( user_email == userlo && password == passwordlo)
+        {
+            cout << "succesfully login" << endl;
+        }
+        else if (user_email != userlo && passwordlo != password)
+        {
+            cout << "wrong email or password " << endl;
+        }
+        else {
+            cout << "wrong email or password " << endl;
+        }
+        
+    }
+    void sign_up() {
+
+        cout << "welcome to our website" << endl;
+        cout << "Kindlly register here" << endl;
+        cout << "name : ";
+        cin >> user_name;
+        cout << "your id is : " << ID << endl;
+        cout << "address : ";
+        cin >> user_address;
+        cout << "phone number  : ";
+        cin >> user_phone;
+        cout << "email : ";
+        cin >> user_email;
+        cout << "password : ";
+        cin >> password;
+        cout << "congratulaion you are now from our customers" << endl;
+
+
+    }
+
+};
+class product {
+public:
+    string product_name;
+    double product_price;
+    int product_quantity;
+    int x;
+  
+public:
+    product()
+    {
+        cout << "products and prices in website" << endl;
+        cout << "if you want a product form our list please write id here to know the price" << endl;
+        cout<< "1- hp, 2-dell, 3-mouse, 4-ram, 5-ssd, 6-hdd" << endl;
+     
+        int x;
+        cin >> x;
+        switch (x)
+        {
+        case 1:
+            product_name = "hp";
+            product_price = 1000;
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout << "name : " << product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity << endl;
+            break;
+        case 2:
+            product_name = "dell";
+            product_price = 900;
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout << "name : " << product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity << endl;
+            break;
+        case 3:
+            product_name = "mouse";
+            product_price = 60;            
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout << "name : " << product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity <<  endl;
+            break;
+        case 4:
+            product_name = "ram";
+            product_price = 100;
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout << "name : " << product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity << endl;
+            break;
+        case 5:
+            product_name = "ssd";
+            product_price = 200;
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout << "name : " << product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity << endl; 
+            break;
+        case 6:
+            product_name = "hdd";
+            product_price = 150;
+            cout << "add quantatiy : ";
+            cin >> product_quantity;
+            cout<<"name : " <<product_name << endl << "price = " << product_price << "$" << endl << "quantatiy " << product_quantity <<endl;
+            break;
+
+        default:
+            cout << "sold out" << endl;
+            break;
+
+        }
+    }
+   
+
+};
+class Order: public product{
+public:
+    double order_price = product_quantity * product_price;
+    
+    
+
+public:
+
+    Order()
+    {
+        
+    }
+   
+    void confirm_order() {
+
+    }
+};
+class payment:public Order{
+    public:
+    int id;
+    string payment_method;
+    string visa_holder_name;
+    int visa_number;
+    int cvc;
+
+    
+    public:
+        payment() 
+        {
+           
+        }
+        void paymentmethod() {
+            cout << "chose your payment method" << endl;
+            cout << "Do you want to pay cash or visa?" << endl;
+            cin >> payment_method;
+            if ("cash" == payment_method) {
+                cout << "total price will be : " << order_price<< endl;
+            }
+            else if ("visa" == payment_method)
+            {
+                cout << "please fill the form" << endl;
+                cout << "visa holder name : ";
+                cin >> visa_holder_name;
+                cout << "visa number : ";
+                cin >> visa_number;
+                cout << "cvc : ";
+                cin >> cvc;
+                cout << "total price will be : " << order_price << endl;
+            }
+        }
+    };
+class shipping :public payment{
+public:
+    string process;
+    double shipping_cost =  50 ;
+    double total = order_price + shipping_cost;
+    string regular= "from 3 days to 8 days";
+    string express = "from 2 days to 3 days";
+
+    shipping()
+    {
+
+
+
+    }
+    void shippingprocess() {
+
+        cout << "choose your shipping process" << endl;
+        cout << "regular :" << regular << endl;
+        cout<< "or express : " << express << endl;
+
+        cin >> process;
+        if (process == "regular")
+        {
+            cout << "your order will arrived " << regular << endl;
+            cout << "your shipping cost is " << total <<"$"<< endl;
+            cout << "thanks for usnig our website";
+
+        }
+        else if(process == "express")
+        {
+            cout << "your order will arrived " << express << endl;
+            cout << "your Total is :  " << total << "$" << endl;
+            cout << "thanks for usnig our website";
+            cout << endl;
+        }
+        else {
+            cout << "ivalid input";
+        }
+        
+    }
+    
+};
+
+int main()
+{
+
+
+
+
+
+    string choice;
+    cout << "if you want to login press L if you want register press R or scrool as quest press guest " << endl;
+    cin >> choice;
+    if (choice == "L")
+    {
+        user u1;
+        u1.login("s", 0);
+        shipping sh1;
+        sh1.paymentmethod();
+        sh1.shippingprocess();
+    }
+    else if (choice == "R")
+    {
+        user u1;
+        u1.sign_up();
+        u1.login("s", 0);
+        shipping sh1;
+        sh1.paymentmethod();
+        sh1.shippingprocess();
+    }
+    else if (choice == "guest")
+    {
+        shipping sh1;
+        string choice;
+        cout << "if you want to login press L if you want register press R " << endl;
+        cin >> choice;
+        if (choice == "L")
+        {
+            user u1;
+            cout << " you must have an account to make order please choose here ";
+
+            u1.login("s", 0);
+            sh1.paymentmethod();
+            sh1.shippingprocess();
+        }
+        else if (choice == "R")
+        {
+            
+            user u1;
+            cout << " you must have an account to make order please choose here ";
+            u1.sign_up();
+            u1.login("s", 0); 
+
+            sh1.paymentmethod();
+            sh1.shippingprocess();
+        }
+    }
+
+    return 0;
+}
